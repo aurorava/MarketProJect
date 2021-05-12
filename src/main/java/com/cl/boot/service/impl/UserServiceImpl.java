@@ -20,10 +20,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean userLogin(User user) {
         User queryUser = userMapper.findByName(user.getUsername());
-        if(queryUser == null) {
-            return false;
-        }else {
+        if(queryUser != null && (user.getPassword()==queryUser.getPassword())) {
             return true;
+        }else {
+            return false;
         }
 
     }
